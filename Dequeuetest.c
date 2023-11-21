@@ -1,4 +1,3 @@
-
 #include <stdio.h>
 #include <stdlib.h>
 #include <stdbool.h>
@@ -63,8 +62,11 @@ void selectAdvisers(AdviserPtr *head, int start, int interval, int numToSelect) 
             printf(", ");
         }
 
-        // Mark the selected adviser as chosen
-        current->id = -1;
+        AdviserPtr temp = current->next;
+        // Remove the selected adviser from the circle
+        current->id = temp->id;
+        current->next = temp->next;
+        free(temp);
     }
 
     printf("\n");
